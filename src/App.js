@@ -1,7 +1,14 @@
 import "./App.css";
+import Body from "./components/Body";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 function App() {
-  return <div className="h-20 bg-slate-600"> Hello Siddharth !!</div>;
+  return (
+    <Provider store={appStore}>
+      <Body />
+    </Provider>
+  );
 }
 
 export default App;
