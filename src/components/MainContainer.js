@@ -6,7 +6,8 @@ const MainContainer = () => {
   // useSelector is use fetch data from store , we fetch movies from our store
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
 
-  if (!movies) return;
+  if (!movies || movies.length === 0) return null;
+
 
   const mainMovie = movies[0];
   //console.log(mainMovie);

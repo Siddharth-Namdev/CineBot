@@ -29,7 +29,7 @@ const useMovietraller = (movieId) => {
 
   useEffect(() => {
     getMovieTrailler();
-  });
+  },[]);
 };
 
 export default useMovietraller;

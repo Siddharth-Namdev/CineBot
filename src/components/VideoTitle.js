@@ -2,7 +2,7 @@ import { FaPlay, FaInfoCircle } from "react-icons/fa";
 
 const VideoTitle = ({ title, description }) => {
   return (
-    <div className="absolute mt-[15%]  px-10 pt-24 bg-gradient-to-r from-black/80 via-black/40 to-transparent text-white">
+    <div className="absolute mt-[15%]  px-10 pt-24 bg-gradient-to-r from-black/80 via-slate-800/5 to-transparent text-white">
       <div className="w-1/2">
         <h1 className="text-6xl font-extrabold  mb-6">{title}</h1>
         <p className="text-lg text-gray-200 mb-8">{description}</p>
@@ -22,3 +22,5 @@ const VideoTitle = ({ title, description }) => {
 };
 
 export default VideoTitle;
+
+
