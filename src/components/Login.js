@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import {BACKGROUND_IMAGE} from "../utils/constant"
 
 const Login = () => {
   // this is use for use same form in signIn and signUp both conditions
@@ -17,8 +17,6 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const navigate = useNavigate();
 
   const toogleSignInform = () => {
     setIsSignIn(!isSignIn);
@@ -46,7 +44,6 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           console.log(user);
-          navigate("/browser");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -63,7 +60,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           //const user = userCredential.user;
-          navigate("/browser");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -80,7 +76,7 @@ const Login = () => {
       <div className="relative h-screen w-full">
         <img
           className="absolute inset-0 w-full h-full object-cover -z-10"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/IN-en-20250630-TRIFECTA-perspective_159086b1-425f-435b-bcd5-1ed8039cdef9_large.jpg"
+          src={BACKGROUND_IMAGE}
           alt="bg-image"
         />
 
