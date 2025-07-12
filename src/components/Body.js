@@ -3,7 +3,6 @@ import Login from "./Login";
 import Browser from "./Browser";
 
 const Body = () => {
-  
   const appRouter = createBrowserRouter([
     {
       path: "/",
@@ -15,7 +14,6 @@ const Body = () => {
     },
   ]);
 
- 
   return (
     <div>
       <RouterProvider router={appRouter} />
