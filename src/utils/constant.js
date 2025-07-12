@@ -1,9 +1,6 @@
 export const LOGO =
   "https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png";
 
-export const BACKGROUND_IMAGE =
-  "https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/IN-en-20250630-TRIFECTA-perspective_159086b1-425f-435b-bcd5-1ed8039cdef9_large.jpg";
-
 // copy this from TMDB - go to moviesList then now playing and select javaScript then copy
 export const API_OPTIONS = {
   method: "GET",
@@ -15,4 +12,5 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/";
-export const GEMINI_KEY = process.env.REACT_APP_GEMINI_KEY
+export const GEMINI_KEY = process.env.REACT_APP_GEMINI_KEY;
+export const BACKGROUND_IMAGE = process.env.REACT_APP_BACKGROUND_IMAGE;
