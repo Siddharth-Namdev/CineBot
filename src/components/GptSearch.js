@@ -1,15 +1,24 @@
 import GptSearchBar from "./GptSearchBar";
-import { BACKGROUND_IMAGE } from "../utils/constant";
 import GptMoviesSuggestions from "./GptMoviesSuggestions";
+import { BACKGROUND_IMAGE } from "../utils/constant";
 
 const GptSearch = () => {
   return (
-    <div>
-      <div className="fixed -z-10">
-        <img className="" src={BACKGROUND_IMAGE} />
+    <div className="relative min-h-screen text-white">
+      {/* Background Image */}
+      <div className="fixed inset-0 -z-10">
+        <img
+          className="w-full h-full object-cover brightness-75"
+          src={BACKGROUND_IMAGE}
+          alt="background"
+        />
       </div>
-      <GptSearchBar />
-      <GptMoviesSuggestions />
+
+      {/* Overlay Content */}
+      <div className="flex flex-col items-center pt-28 px-4 md:px-16">
+        <GptSearchBar />
+        <GptMoviesSuggestions />
+      </div>
     </div>
   );
 };

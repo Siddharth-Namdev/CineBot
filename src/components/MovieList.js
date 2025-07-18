@@ -4,15 +4,14 @@ const MovieList = ({ title, movies }) => {
   if (!movies || movies.length === 0) return null;
 
   return (
-    <div className="px-4 md:px-0">
-      <h1 className="text-xl md:text-3xl font-bold text-white mb-4 drop-shadow-md">
+    <div className="mb-6">
+      <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 drop-shadow-md underline underline-offset-4 decoration-pink-500">
         {title}
-      </h1>
+      </h2>
 
-      {/* Horizontal Scroll Container */}
-      <div className="flex overflow-x-scroll no-scrollbar space-x-4 pb-2">
+      <div className="flex overflow-x-auto gap-4 no-scrollbar pb-2">
         {movies.map((movie) => (
-          <MovieCard key={movie.id} posterPath={movie.poster_path} />
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>

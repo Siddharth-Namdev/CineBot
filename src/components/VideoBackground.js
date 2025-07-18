@@ -7,7 +7,7 @@ const VideoBackground = ({ movieId }) => {
   return (
     <div>
       <iframe
-        className="w-screen aspect-video brightness-60"
+        className="w-screen aspect-video brightness-60 z-0"
         src={
           "https://www.youtube.com/embed/" +
           traller?.key +

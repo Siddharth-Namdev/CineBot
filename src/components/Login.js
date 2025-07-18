@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import {BACKGROUND_IMAGE} from "../utils/constant"
+import { BACKGROUND_IMAGE } from "../utils/constant";
+import bg from "./bg-image.jpg";
 
 const Login = () => {
   // this is use for use same form in signIn and signUp both conditions
@@ -73,33 +74,35 @@ const Login = () => {
     <div>
       <Header />
 
-      <div className="relative h-screen w-full">
+      <div className="relative min-h-screen w-full">
         <img
-          className="absolute inset-0 w-full h-full object-cover -z-10"
+          className="absolute inset-0 w-full h-full object-cover -z-10 brightness-90"
           src={BACKGROUND_IMAGE}
           alt="bg-image"
         />
 
-        <div className="flex items-start justify-center h-full pt-20">
+        <div className="flex items-start justify-center h-full pt-16 px-4 sm:px-0">
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="bg-black bg-opacity-70 text-white p-6 rounded-lg w-1/4"
+            className="bg-black bg-opacity-70 text-white p-6 rounded-lg w-[90%] sm:w-[70%] md:w-[50%] lg:w-[35%] xl:w-[25%] shadow-xl backdrop-blur-md"
           >
-            <h1 className="text-3xl m-3">{isSignIn ? "Sign In" : "Sign Up"}</h1>
+            <h1 className="text-3xl font-bold m-3 text-center">
+              {isSignIn ? "Sign In" : "Sign Up"}
+            </h1>
 
             {!isSignIn && (
-              <input // this is only see when user want Sign Up
+              <input
                 type="text"
                 placeholder="Full Name"
-                className="p-2 m-2 my-5 w-full rounded bg-slate-700"
+                className="p-3 my-3 w-full rounded-lg bg-slate-800 focus:outline-none focus:ring-2 focus:ring-red-400"
               />
             )}
 
             {!isSignIn && (
               <input
-                type="number" //// this is only see when user want Sign Up
+                type="number"
                 placeholder="Mobile No."
-                className="p-2 m-2 my-5 w-full rounded bg-slate-700"
+                className="p-3 my-3 w-full rounded-lg bg-slate-800 focus:outline-none focus:ring-2 focus:ring-red-400"
               />
             )}
 
@@ -107,17 +110,17 @@ const Login = () => {
               ref={email}
               type="text"
               placeholder="Email"
-              className="p-2 m-2 my-5 w-full rounded bg-slate-700"
+              className="p-3 my-3 w-full rounded-lg bg-slate-800 focus:outline-none focus:ring-2 focus:ring-red-400"
             />
 
-            <div className="relative m-2 my-5">
+            <div className="relative my-3">
               <input
                 ref={password}
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
-                className="p-2 w-full rounded bg-slate-700 pr-10"
+                className="p-3 w-full rounded-lg bg-slate-800 pr-10 focus:outline-none focus:ring-2 focus:ring-red-400"
               />
-              <span // this is use for eye icon of password
+              <span
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-3 text-xl cursor-pointer text-gray-300 hover:text-white"
               >
@@ -129,16 +132,18 @@ const Login = () => {
 
             <button
               onClick={handleButtonClick}
-              className="bg-red-600 hover:bg-red-700 p-2 m-2 my-4 w-full rounded-xl"
+              className="bg-red-600 hover:bg-red-700 p-3 w-full rounded-xl font-semibold transition-all duration-300"
             >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
 
-            <p onClick={toogleSignInform} className="cursor-pointer">
-              {" "}
+            <p
+              onClick={toogleSignInform}
+              className="cursor-pointer text-center mt-4 hover:underline"
+            >
               {isSignIn
-                ? "New in NetFlix ? Sign Up"
-                : "Already restered ? Sign In"}
+                ? "New in NetFlix? Sign Up"
+                : "Already registered? Sign In"}
             </p>
           </form>
         </div>

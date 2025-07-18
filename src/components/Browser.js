@@ -15,7 +15,7 @@ const Browser = () => {
   useTopRatedMovies();
   useUpcomingMovies();
   return (
-    <div>
+    <div className="relative flex flex-col">
       <Header />
       {showGptSearch ? (
         <GptSearch />

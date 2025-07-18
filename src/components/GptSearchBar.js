@@ -1,15 +1,15 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { GoogleGenAI } from "@google/genai";
-import { API_OPTIONS } from "../utils/constant";
+import { API_OPTIONS, GEMINI_KEY } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { addGptMovieResult } from "../utils/GptSlice";
-import { GEMINI_KEY } from "../utils/constant";
+
 const GptSearchBar = () => {
   const dispatch = useDispatch();
   const searchText = useRef(null);
   const ai = new GoogleGenAI({ apiKey: GEMINI_KEY });
+  const [loading, setLoading] = useState(false);
 
-  // search movie in TMDB
   const searchMovieTMDB = async (movie) => {
     const data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
@@ -18,67 +18,68 @@ const GptSearchBar = () => {
       API_OPTIONS
     );
     const json = await data.json();
-
     return json.results;
   };
 
   const handleGptSearchClick = async () => {
-    //Make an API call to GPT API and get Movie Results
-
+    setLoading(true);
     const gptQuery =
-      "act as a movie recomandation systerm and suggest somemovies fpr the query" +
+      "Act as a movie recommendation system and suggest 5 movies for this query: " +
       searchText?.current?.value +
-      "only give me names of 5 movies comma seperated. Example : Gadar, sholay, Don , chup chup , koi mil gaya ";
+      ". Return comma-separated movie names only. Example: Gadar, Sholay, Don, Chup Chup Ke, Koi Mil Gaya";
+
     try {
       const gptResults = await ai.models.generateContent({
         model: "gemini-2.5-flash",
         contents: gptQuery,
       });
 
-      const gptMovies = gptResults.text?.split(",");
-      console.log(gptMovies);
-
+      const gptMovies = gptResults.text?.split(",").map((m) => m.trim());
       const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
-
       const tmdbResults = await Promise.all(promiseArray);
-
-      console.log(tmdbResults);
 
       dispatch(
         addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
       );
-
-      console.log(gptResults.text);
     } catch (error) {
       if (error.status === 429) {
-        alert("You have exceeded your API quota. Please try again later.");
+        alert("API quota exceeded. Try later.");
       } else {
         console.error(error);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="pt-[10%] flex justify-center">
-      <form
-        className="bg-black w-1/2 grid grid-cols-12"
-        onSubmit={(e) => e.preventDefault()}
-      >
+    <form
+      className="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl w-full max-w-3xl shadow-xl border border-white/20 transition-all duration-300"
+      onSubmit={(e) => e.preventDefault()}
+    >
+      <div className="flex flex-col md:flex-row gap-4">
         <input
           ref={searchText}
-          className="p-4 m-4 col-span-9"
+          className="flex-1 px-4 py-3 rounded-xl text-black placeholder-gray-500 focus:outline-none font-medium"
           type="text"
-          placeholder="What would you to like today"
+          placeholder="What do you want to watch today?"
         />
         <button
-          className="bg-red-700 col-span-3 m-4 rounded-xl font-bold"
           onClick={handleGptSearchClick}
+          className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-6 py-3 rounded-xl font-bold hover:scale-105 transition-transform duration-200"
+          disabled={loading}
         >
-          {" "}
-          Search
+          {loading ? (
+            <span className="flex items-center gap-2">
+              <span className="w-4 h-4 border-2 border-t-white border-red-500 rounded-full animate-spin"></span>
+              Loading...
+            </span>
+          ) : (
+            "Search"
+          )}
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 
