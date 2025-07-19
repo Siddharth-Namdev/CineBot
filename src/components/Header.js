@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO } from "../utils/constant";
+import  {LOGO } from "../utils/constant";
 import { toogleGptSearchview } from "../utils/GptSlice";
 
 const Header = () => {

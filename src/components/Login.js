@@ -8,7 +8,6 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { BACKGROUND_IMAGE } from "../utils/constant";
-import bg from "./bg-image.jpg";
 
 const Login = () => {
   // this is use for use same form in signIn and signUp both conditions
