@@ -75,7 +75,7 @@ const Login = () => {
 
       <div className="relative min-h-screen w-full">
         <img
-          className="absolute inset-0 w-full h-full object-cover -z-10 brightness-90"
+          className="absolute inset-0 w-full h-full object-cover -z-10 brightness-89"
           src={BACKGROUND_IMAGE}
           alt="bg-image"
         />
