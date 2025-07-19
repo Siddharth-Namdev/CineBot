@@ -15,7 +15,7 @@ const GptSearch = () => {
       </div>
 
       {/* Overlay Content */}
-      <div className="flex flex-col items-center pt-28 px-4 md:px-16">
+      <div className="flex flex-col items-center pt-28 px-4 mt-[60px] md:px-16">
         <GptSearchBar />
         <GptMoviesSuggestions />
       </div>
